@@ -1,0 +1,174 @@
+# 🇧🇷 Validador de CPF e CNPJ
+
+Uma ferramenta web moderna, gratuita e segura para validação de CPF e CNPJ brasileiros com foco em **UX**, **acessibilidade** e **SEO**.
+
+## ✨ Características
+
+### 🚀 **Funcionalidades Principais**
+- ✅ Validação matemática de CPF (11 dígitos)
+- ✅ Validação matemática de CNPJ (14 dígitos)
+- ✅ Formatação automática durante a digitação
+- ✅ Validação em tempo real
+- ✅ Interface responsiva e moderna
+- ✅ 100% client-side (dados não são enviados)
+
+### 🎨 **Experiência do Usuário (UX)**
+- 🔄 **Validação em tempo real** - Feedback instantâneo enquanto digita
+- 📱 **Design responsivo** - Funciona perfeitamente em mobile e desktop
+- ⌨️ **Formatação automática** - CPF/CNPJ formatados automaticamente
+- 🎯 **Estados visuais** - Indicadores claros de válido/inválido
+- ⚡ **Animações suaves** - Transições e micro-interações elegantes
+- 📋 **Suporte a cola** - Cole números e formatação será aplicada automaticamente
+
+### ♿ **Acessibilidade (A11y)**
+- 🔍 **Leitores de tela** - Totalmente compatível com NVDA, JAWS, VoiceOver
+- ⌨️ **Navegação por teclado** - Navegação completa sem mouse
+- 🎯 **ARIA attributes** - Semântica adequada para tecnologias assistivas
+- 🎨 **Alto contraste** - Cores que atendem às diretrizes WCAG
+- 🔄 **Reduced motion** - Respeita preferências de animação do usuário
+
+### 🔍 **SEO Otimizado**
+- 📄 **Meta tags completas** - Title, description, keywords otimizados
+- 🌐 **Open Graph** - Compartilhamento otimizado em redes sociais
+- 📊 **Structured Data** - JSON-LD para melhor indexação
+- 🏷️ **Semantic HTML** - Estrutura semântica adequada
+- 📱 **Mobile-first** - Otimizado para dispositivos móveis
+
+
+## 🛠️ Tecnologias Utilizadas
+
+- **HTML5** - Estrutura semântica moderna
+- **CSS3** - Variáveis CSS, Grid, Flexbox, animações
+- **JavaScript ES6+** - Classes, arrow functions, async/await
+- **Google Fonts** - Tipografia Inter para melhor legibilidade
+
+
+## 🔧 Como Usar
+
+1. **Digite o documento**: Insira CPF (11 dígitos) ou CNPJ (14 dígitos)
+2. **Formatação automática**: Os números serão formatados automaticamente
+3. **Validação em tempo real**: Veja o status conforme digita
+4. **Clique em Validar**: Obtenha o resultado final com feedback visual
+
+### Exemplos de entrada válidos:
+```
+CPF: 11144477735
+CPF: 111.444.777-35
+CNPJ: 11222333000181
+CNPJ: 11.222.333/0001-81
+```
+
+## 📋 Funcionalidades Detalhadas
+
+### ✅ Validação de CPF
+- Verifica se possui exatamente 11 dígitos
+- Elimina sequências repetitivas (111.111.111-11)
+- Calcula e valida os dígitos verificadores
+- Algoritmo baseado na especificação oficial da Receita Federal
+
+### ✅ Validação de CNPJ
+- Verifica se possui exatamente 14 dígitos
+- Elimina sequências repetitivas (11.111.111/1111-11)
+- Calcula e valida os dígitos verificadores
+- Algoritmo baseado na especificação oficial da Receita Federal
+
+### 🎨 Interface
+- Design moderno com gradientes e sombras
+- Tema claro com boa legibilidade
+- Animações suaves e responsivas
+- Estados de loading e feedback visual
+
+
+## 🧪 Testes
+
+### Casos de Teste para CPF:
+```javascript
+// CPFs Válidos
+11144477735  // ✅ Válido
+01234567890  // ✅ Válido
+
+// CPFs Inválidos
+11111111111  // ❌ Sequência repetitiva
+12345678901  // ❌ Dígitos verificadores incorretos
+123456789    // ❌ Menos de 11 dígitos
+```
+
+### Casos de Teste para CNPJ:
+```javascript
+// CNPJs Válidos
+11222333000181  // ✅ Válido
+34028316000103  // ✅ Válido
+
+// CNPJs Inválidos
+11111111111111  // ❌ Sequência repetitiva
+11222333000180  // ❌ Dígitos verificadores incorretos
+1122233300018   // ❌ Menos de 14 dígitos
+```
+
+## 🤝 Contribuindo
+
+Contribuições são sempre bem-vindas! Veja como você pode ajudar:
+
+### 💡 Sugerindo Melhorias
+1. Abra uma issue com a tag `enhancement`
+2. Descreva a funcionalidade desejada
+3. Explique por que seria útil
+
+### 🔧 Enviando Pull Requests
+1. Fork o projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+### 📝 Padrões de Código
+- Use JavaScript ES6+
+- Mantenha o código comentado
+- Siga as convenções de nomenclatura existentes
+- Teste em diferentes navegadores
+- Garanta acessibilidade (WCAG 2.1)
+
+## 🔒 Privacidade e Segurança
+
+- ✅ **100% Client-side**: Nenhum dado é enviado para servidores
+- ✅ **Sem cookies**: Não armazenamos informações pessoais
+- ✅ **Sem tracking**: Sem Analytics ou scripts de terceiros
+- ✅ **Open Source**: Código totalmente transparente e auditável
+
+## ❓ FAQ
+
+<details>
+<summary><strong>Esta ferramenta consulta a Receita Federal?</strong></summary>
+
+Não. Esta ferramenta apenas valida a estrutura matemática dos documentos usando os algoritmos oficiais. Ela não verifica se o CPF/CNPJ está ativo ou pertence a uma pessoa/empresa específica.
+</details>
+
+<details>
+<summary><strong>Meus dados ficam salvos em algum lugar?</strong></summary>
+
+Não. Todo o processamento é feito localmente no seu navegador. Nenhuma informação é enviada para servidores ou armazenada.
+</details>
+
+<details>
+<summary><strong>Funciona offline?</strong></summary>
+
+Sim! Após o primeiro carregamento, a ferramenta funciona completamente offline.
+</details>
+
+
+## 🌟 Agradecimentos
+
+- Inspirado pelas melhores práticas de UX/UI modernas
+- Algoritmos baseados nas especificações oficiais da Receita Federal
+- Comunidade open source pelo feedback e contribuições
+
+
+---
+
+<div align="center">
+
+**[⭐ Dê uma estrela se este projeto te ajudou!](https://github.com/seu-usuario/validador-cpf-cnpj)**
+
+Feito com ❤️ no Brasil 🇧🇷
+
+</div>
