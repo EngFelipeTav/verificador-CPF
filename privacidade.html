@@ -1,19 +1,476 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Política de Privacidade</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidade - Validador de CPF e CNPJ</title>
+  <meta name="description" content="Política de privacidade do Validador de CPF e CNPJ. Saiba como protegemos seus dados e garantimos sua privacidade.">
+  
+  <!-- Preload de fontes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  
   <style>
-    body { max-width: 600px; margin: auto; padding: 20px; font-family: Arial, sans-serif; }
+    :root {
+      --primary-color: #3b82f6;
+      --primary-hover: #2563eb;
+      --success-color: #059669;
+      --error-color: #dc2626;
+      --warning-color: #d97706;
+      --text-primary: #1f2937;
+      --text-secondary: #6b7280;
+      --background-light: #f9fafb;
+      --border-color: #d1d5db;
+      --border-radius: 12px;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      line-height: 1.6;
+    }
+    
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-lg);
+      max-width: 680px;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), #8b5cf6);
+    }
+    
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary-color);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 24px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      background: rgba(59, 130, 246, 0.05);
+    }
+    
+    .back-link:hover {
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--primary-hover);
+      transform: translateX(-2px);
+    }
+    
+    .back-link:focus {
+      outline: 2px solid var(--primary-color);
+      outline-offset: 2px;
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    
+    h1 {
+      margin: 0 0 8px 0;
+      color: var(--text-primary);
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+    }
+    
+    .subtitle {
+      color: var(--text-secondary);
+      font-size: 16px;
+      margin: 0 0 8px 0;
+    }
+    
+    .last-updated {
+      background: rgba(59, 130, 246, 0.05);
+      padding: 12px 16px;
+      border-radius: 8px;
+      border-left: 4px solid var(--primary-color);
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+    }
+    
+    .content {
+      color: var(--text-primary);
+    }
+    
+    h2 {
+      color: var(--text-primary);
+      font-size: 20px;
+      font-weight: 600;
+      margin: 32px 0 16px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    h2:first-of-type {
+      margin-top: 0;
+    }
+    
+    .section-icon {
+      font-size: 18px;
+    }
+    
+    p {
+      margin: 16px 0;
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+    
+    .highlight-box {
+      background: rgba(5, 150, 105, 0.05);
+      border: 1px solid rgba(5, 150, 105, 0.2);
+      border-left: 4px solid var(--success-color);
+      padding: 16px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    
+    .highlight-box p {
+      margin: 0;
+      color: var(--success-color);
+      font-weight: 500;
+    }
+    
+    .warning-box {
+      background: rgba(217, 119, 6, 0.05);
+      border: 1px solid rgba(217, 119, 6, 0.2);
+      border-left: 4px solid var(--warning-color);
+      padding: 16px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    
+    .warning-box p {
+      margin: 0;
+      color: var(--warning-color);
+      font-weight: 500;
+    }
+    
+    .data-list {
+      background: var(--background-light);
+      padding: 20px;
+      border-radius: 8px;
+      margin: 16px 0;
+    }
+    
+    .data-list h3 {
+      margin: 0 0 12px 0;
+      color: var(--text-primary);
+      font-size: 16px;
+      font-weight: 600;
+    }
+    
+    ul {
+      margin: 16px 0;
+      padding-left: 20px;
+    }
+    
+    li {
+      margin: 8px 0;
+      color: var(--text-primary);
+    }
+    
+    .contact-section {
+      background: var(--background-light);
+      padding: 20px;
+      border-radius: 8px;
+      margin: 24px 0;
+      text-align: center;
+    }
+    
+    .contact-section h3 {
+      margin: 0 0 12px 0;
+      color: var(--text-primary);
+      font-size: 16px;
+      font-weight: 600;
+    }
+    
+    .contact-section p {
+      margin: 0;
+      color: var(--text-secondary);
+    }
+    
+    .contact-section a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .contact-section a:hover {
+      color: var(--primary-hover);
+      text-decoration: underline;
+    }
+    
+    /* Responsividade */
+    @media (max-width: 480px) {
+      body {
+        padding: 16px;
+      }
+      
+      .container {
+        padding: 24px;
+      }
+      
+      h1 {
+        font-size: 24px;
+      }
+      
+      h2 {
+        font-size: 18px;
+      }
+    }
+    
+    /* Melhorias de acessibilidade */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+    
+    /* Rodapé principal */
+    .main-footer {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      margin-top: 20px;
+      max-width: 680px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .main-footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary-color), #8b5cf6);
+    }
+    
+    .footer-nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .footer-nav a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    
+    .footer-nav a:hover {
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+    
+    .footer-nav a:focus {
+      outline: 2px solid var(--primary-color);
+      outline-offset: 2px;
+    }
+    
+    .footer-copyright {
+      color: var(--text-secondary);
+      font-size: 13px;
+      margin: 0;
+      line-height: 1.5;
+    }
+    
+    @media (max-width: 480px) {
+      .footer-nav {
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+      }
+      
+      .footer-nav a {
+        padding: 10px 16px;
+        width: 100%;
+        max-width: 200px;
+        text-align: center;
+      }
+      
+      .main-footer {
+        padding: 20px;
+        margin-top: 16px;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>Política de Privacidade</h1>
-  <p>Coletamos apenas dados básicos como cookies para análise de acesso via Google Analytics.</p>
-  <p>Não armazenamos CPFs ou CNPJs inseridos no validador.</p>
-  <p>O uso deste site é anônimo e seguro.</p>
-  <a href="index.html">← Voltar para a página principal</a>
+  <main class="container">
+    <a href="index.html" class="back-link" aria-label="Voltar para a página principal">
+      ← Voltar para o Validador
+    </a>
+    
+    <header>
+      <h1>Política de Privacidade</h1>
+      <p class="subtitle">Saiba como protegemos seus dados e garantimos sua privacidade</p>
+    </header>
+    
+    <div class="last-updated">
+      <strong>📅 Última atualização:</strong> 29 de julho de 2025
+    </div>
+    
+    <div class="content">
+      <div class="highlight-box">
+        <p>🔒 <strong>Compromisso com sua privacidade:</strong> Não coletamos, armazenamos ou compartilhamos seus CPFs ou CNPJs. Toda validação é feita localmente no seu navegador.</p>
+      </div>
+      
+      <h2><span class="section-icon">📋</span> Resumo Executivo</h2>
+      <p>O Validador de CPF e CNPJ é uma ferramenta 100% segura e anônima. Respeitamos sua privacidade e não coletamos dados pessoais sensíveis. Esta política explica de forma transparente como tratamos as informações durante o uso de nosso serviço.</p>
+      
+      <h2><span class="section-icon">🛡️</span> Dados que NÃO Coletamos</h2>
+      <div class="data-list">
+        <h3>Garantimos que NUNCA coletamos:</h3>
+        <ul>
+          <li><strong>CPFs ou CNPJs inseridos</strong> - A validação é 100% local</li>
+          <li><strong>Dados pessoais identificáveis</strong> - Nome, endereço, telefone</li>
+          <li><strong>Informações bancárias</strong> - Não processamos pagamentos</li>
+          <li><strong>Localização precisa</strong> - Apenas país/região para estatísticas</li>
+          <li><strong>Histórico de navegação</strong> - Não rastreamos outros sites</li>
+        </ul>
+      </div>
+      
+      <h2><span class="section-icon">📊</span> Dados que Coletamos</h2>
+      <p>Coletamos apenas informações técnicas básicas e anônimas para melhorar nosso serviço:</p>
+      
+      <div class="data-list">
+        <h3>Google Analytics (dados anônimos):</h3>
+        <ul>
+          <li>Número de visitantes únicos</li>
+          <li>Páginas mais acessadas</li>
+          <li>Tempo de permanência no site</li>
+          <li>Tipo de dispositivo (mobile/desktop)</li>
+          <li>Navegador utilizado</li>
+          <li>País/região de origem (sem identificar cidade)</li>
+        </ul>
+      </div>
+      
+      <h2><span class="section-icon">🍪</span> Cookies</h2>
+      <p>Utilizamos apenas cookies essenciais e analíticos:</p>
+      
+      <div class="data-list">
+        <h3>Tipos de cookies utilizados:</h3>
+        <ul>
+          <li><strong>Google Analytics:</strong> Para estatísticas anônimas de uso</li>
+          <li><strong>Cookies técnicos:</strong> Para funcionamento básico do site</li>
+          <li><strong>Sem cookies de publicidade:</strong> Não exibimos anúncios direcionados</li>
+        </ul>
+      </div>
+      
+      <p>Você pode desabilitar cookies nas configurações do seu navegador, mas isso pode afetar algumas funcionalidades do site.</p>
+      
+      <h2><span class="section-icon">🔐</span> Segurança</h2>
+      <p>Implementamos medidas de segurança técnicas e administrativas para proteger as informações:</p>
+      
+      <ul>
+        <li><strong>HTTPS:</strong> Todas as conexões são criptografadas</li>
+        <li><strong>Validação local:</strong> CPFs/CNPJs são processados apenas no seu navegador</li>
+        <li><strong>Sem armazenamento:</strong> Dados não ficam em nossos servidores</li>
+        <li><strong>Código aberto:</strong> Algoritmos de validação são transparentes</li>
+      </ul>
+      
+      <h2><span class="section-icon">👥</span> Compartilhamento de Dados</h2>
+      <div class="warning-box">
+        <p>⚠️ <strong>Importante:</strong> Não compartilhamos, vendemos ou transferimos dados pessoais para terceiros. Os únicos dados compartilhados são estatísticas anônimas com o Google Analytics.</p>
+      </div>
+      
+      <h2><span class="section-icon">⚖️</span> Seus Direitos</h2>
+      <p>De acordo com a Lei Geral de Proteção de Dados (LGPD), você tem o direito de:</p>
+      
+      <ul>
+        <li>Saber quais dados coletamos (descritos nesta política)</li>
+        <li>Solicitar a exclusão de dados (aplicável apenas aos cookies)</li>
+        <li>Revogar consentimento a qualquer momento</li>
+        <li>Receber informações sobre tratamento de dados</li>
+      </ul>
+      
+      <h2><span class="section-icon">🔄</span> Alterações na Política</h2>
+      <p>Esta política pode ser atualizada ocasionalmente. Quando isso acontecer:</p>
+      
+      <ul>
+        <li>A data de "última atualização" será modificada</li>
+        <li>Mudanças significativas serão destacadas no topo da página</li>
+        <li>Recomendamos revisar esta política periodicamente.</li>
+      </ul>
+      
+      <h2><span class="section-icon">🌍</span> Conformidade Legal</h2>
+      <p>Este serviço está em conformidade com:</p>
+      
+      <ul>
+        <li><strong>LGPD (Brasil):</strong> Lei Geral de Proteção de Dados</li>
+        <li><strong>GDPR (Europa):</strong> Regulamento Geral de Proteção de Dados</li>
+        <li><strong>CCPA (Califórnia):</strong> California Consumer Privacy Act</li>
+      </ul>
+      
+      <div class="contact-section">
+        <h3>💬 Dúvidas sobre Privacidade?</h3>
+        <p>Para questões relacionadas à privacidade e proteção de dados, entre em contato:</p>
+        <p><a href="contato.html">📧 Formulário de Contato</a> | <strong>E-mail:</strong> privacidade@validador.com</p>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Rodapé principal -->
+  <footer class="main-footer">
+    <nav class="footer-nav" aria-label="Links do rodapé">
+      <a href="index.html">Validador</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="contato.html">Contato</a>
+      <a href="termos.html">Termos de Uso</a>
+    </nav>
+    <p class="footer-copyright">&copy; 2025 Validar CPF/CNPJ - Todos os direitos reservados</p>
+  </footer>
 </body>
 </html>
