@@ -1,31 +1,721 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contato - Validador</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contato - Validador de CPF e CNPJ</title>
+  <meta name="description" content="Entre em contato conosco. Envie suas dúvidas, sugestões ou feedback sobre nosso validador de CPF e CNPJ.">
+  
+  <!-- Preload de fontes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  
   <style>
-    body { max-width: 600px; margin: auto; padding: 20px; font-family: Arial, sans-serif; }
-    input, textarea {
-      width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc;
-      border-radius: 5px;
+    :root {
+      --primary-color: #3b82f6;
+      --primary-hover: #2563eb;
+      --success-color: #059669;
+      --error-color: #dc2626;
+      --warning-color: #d97706;
+      --text-primary: #1f2937;
+      --text-secondary: #6b7280;
+      --background-light: #f9fafb;
+      --border-color: #d1d5db;
+      --border-radius: 12px;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     }
+    
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      line-height: 1.5;
+    }
+    
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-lg);
+      max-width: 520px;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), #8b5cf6);
+    }
+    
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary-color);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 24px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      background: rgba(59, 130, 246, 0.05);
+    }
+    
+    .back-link:hover {
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--primary-hover);
+      transform: translateX(-2px);
+    }
+    
+    .back-link:focus {
+      outline: 2px solid var(--primary-color);
+      outline-offset: 2px;
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    
+    h1 {
+      margin: 0 0 8px 0;
+      color: var(--text-primary);
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+    }
+    
+    .subtitle {
+      color: var(--text-secondary);
+      font-size: 16px;
+      margin: 0 0 8px 0;
+    }
+    
+    .contact-info {
+      background: rgba(59, 130, 246, 0.05);
+      padding: 16px;
+      border-radius: 8px;
+      border-left: 4px solid var(--primary-color);
+      margin-bottom: 32px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    
+    .form-group {
+      margin-bottom: 24px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+      font-weight: 500;
+      font-size: 14px;
+    }
+    
+    .required {
+      color: var(--error-color);
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 16px;
+      border: 2px solid var(--border-color);
+      border-radius: var(--border-radius);
+      font-size: 16px;
+      font-family: inherit;
+      transition: all 0.2s ease;
+      background: white;
+      color: var(--text-primary);
+      resize: none;
+    }
+    
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+    
+    input[type="text"].valid,
+    input[type="email"].valid {
+      border-color: var(--success-color);
+    }
+    
+    input[type="text"].invalid,
+    input[type="email"].invalid {
+      border-color: var(--error-color);
+    }
+    
+    textarea {
+      min-height: 120px;
+      font-family: inherit;
+      line-height: 1.5;
+    }
+    
+    .input-hint {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+    
+    .error-message {
+      font-size: 12px;
+      color: var(--error-color);
+      margin-top: 4px;
+      display: none;
+    }
+    
     button {
-      background: #007bff; color: #fff; border: none; padding: 10px 20px;
-      border-radius: 5px; cursor: pointer;
+      width: 100%;
+      padding: 16px;
+      background: var(--primary-color);
+      border: none;
+      color: white;
+      font-size: 16px;
+      font-weight: 500;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+      font-family: inherit;
+    }
+    
+    button:hover:not(:disabled) {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow);
+    }
+    
+    button:active {
+      transform: translateY(0);
+    }
+    
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    
+    button:focus-visible {
+      outline: 2px solid var(--primary-color);
+      outline-offset: 2px;
+    }
+    
+    .success-message {
+      background: rgba(5, 150, 105, 0.1);
+      color: var(--success-color);
+      border: 1px solid rgba(5, 150, 105, 0.2);
+      padding: 16px;
+      border-radius: var(--border-radius);
+      margin-top: 20px;
+      text-align: center;
+      font-weight: 500;
+      display: none;
+    }
+    
+    .contact-methods {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid #e5e7eb;
+    }
+    
+    .contact-methods h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+    
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    
+    .contact-item {
+      padding: 16px;
+      background: var(--background-light);
+      border-radius: 8px;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+    
+    .contact-item:hover {
+      background: rgba(59, 130, 246, 0.05);
+      transform: translateY(-1px);
+    }
+    
+    .contact-item-icon {
+      font-size: 24px;
+      margin-bottom: 8px;
+      display: block;
+    }
+    
+    .contact-item-title {
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+    
+    .contact-item-value {
+      color: var(--text-secondary);
+      font-size: 13px;
+    }
+    
+    /* Estados de loading */
+    .loading {
+      position: relative;
+    }
+    
+    .loading::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 16px;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top: 2px solid white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      0% { transform: translateY(-50%) rotate(0deg); }
+      100% { transform: translateY(-50%) rotate(360deg); }
+    }
+    
+    /* Responsividade */
+    @media (max-width: 480px) {
+      body {
+        padding: 16px;
+      }
+      
+      .container {
+        padding: 24px;
+      }
+      
+      h1 {
+        font-size: 24px;
+      }
+      
+      input[type="text"],
+      input[type="email"],
+      textarea,
+      button {
+        padding: 14px;
+      }
+      
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    /* Animações */
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+    
+    .shake {
+      animation: shake 0.5s ease-in-out;
+    }
+    
+    /* Melhorias de acessibilidade */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+    
+    /* Rodapé principal */
+    .main-footer {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      margin-top: 20px;
+      max-width: 520px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .main-footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary-color), #8b5cf6);
+    }
+    
+    .footer-nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .footer-nav a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    
+    .footer-nav a:hover {
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+    
+    .footer-nav a:focus {
+      outline: 2px solid var(--primary-color);
+      outline-offset: 2px;
+    }
+    
+    .footer-copyright {
+      color: var(--text-secondary);
+      font-size: 13px;
+      margin: 0;
+      line-height: 1.5;
+    }
+    
+    @media (max-width: 480px) {
+      .footer-nav {
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+      }
+      
+      .footer-nav a {
+        padding: 10px 16px;
+        width: 100%;
+        max-width: 200px;
+        text-align: center;
+      }
+      
+      .main-footer {
+        padding: 20px;
+        margin-top: 16px;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Contato</h1>
-  <p>Envie sua dúvida ou sugestão:</p>
-  <form action="mailto:seuemail@dominio.com" method="post" enctype="text/plain">
-    <input type="text" name="nome" placeholder="Seu nome" required />
-    <input type="email" name="email" placeholder="Seu e-mail" required />
-    <textarea name="mensagem" rows="5" placeholder="Mensagem" required></textarea>
-    <button type="submit">Enviar</button>
-  </form>
-  <a href="index.html">← Voltar para a página principal</a>
+  <main class="container">
+    <a href="index.html" class="back-link" aria-label="Voltar para a página principal">
+      ← Voltar para o Validador
+    </a>
+    
+    <header>
+      <h1>Fale Conosco</h1>
+      <p class="subtitle">Envie suas dúvidas, sugestões ou feedback</p>
+    </header>
+    
+    <div class="contact-info">
+      <strong>📧 Resposta rápida:</strong> Normalmente respondemos em até 24 horas. Sua privacidade é importante para nós.
+    </div>
+    
+    <form id="contactForm" novalidate>
+      <div class="form-group">
+        <label for="nome">
+          Nome <span class="required">*</span>
+        </label>
+        <input 
+          type="text" 
+          id="nome" 
+          name="nome" 
+          placeholder="Digite seu nome completo"
+          required
+          aria-describedby="nome-hint nome-error"
+        >
+        <div class="input-hint" id="nome-hint">
+          Como você gostaria de ser chamado
+        </div>
+        <div class="error-message" id="nome-error"></div>
+      </div>
+      
+      <div class="form-group">
+        <label for="email">
+          E-mail <span class="required">*</span>
+        </label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          placeholder="seu@email.com"
+          required
+          aria-describedby="email-hint email-error"
+        >
+        <div class="input-hint" id="email-hint">
+          Usaremos este e-mail apenas para responder sua mensagem
+        </div>
+        <div class="error-message" id="email-error"></div>
+      </div>
+      
+      <div class="form-group">
+        <label for="assunto">
+          Assunto
+        </label>
+        <input 
+          type="text" 
+          id="assunto" 
+          name="assunto" 
+          placeholder="Ex: Sugestão de melhoria, dúvida sobre validação..."
+          aria-describedby="assunto-hint"
+        >
+        <div class="input-hint" id="assunto-hint">
+          Opcional - nos ajuda a categorizar sua mensagem
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="mensagem">
+          Mensagem <span class="required">*</span>
+        </label>
+        <textarea 
+          id="mensagem" 
+          name="mensagem" 
+          placeholder="Digite sua mensagem aqui..."
+          required
+          aria-describedby="mensagem-hint mensagem-error"
+        ></textarea>
+        <div class="input-hint" id="mensagem-hint">
+          Seja específico para que possamos ajudar melhor
+        </div>
+        <div class="error-message" id="mensagem-error"></div>
+      </div>
+      
+      <button type="submit" id="enviarBtn">
+        Enviar Mensagem
+      </button>
+    </form>
+    
+    <div id="successMessage" class="success-message">
+      ✅ Mensagem enviada com sucesso! Entraremos em contato em breve.
+    </div>
+    
+    <section class="contact-methods">
+      <h3>Outras formas de contato</h3>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <span class="contact-item-icon">💌</span>
+          <div class="contact-item-title">E-mail direto</div>
+          <div class="contact-item-value">contato@validador.com</div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-icon">⏰</span>
+          <div class="contact-item-title">Tempo de resposta</div>
+          <div class="contact-item-value">Até 24 horas</div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-icon">🔒</span>
+          <div class="contact-item-title">Privacidade</div>
+          <div class="contact-item-value">100% seguro</div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <!-- Rodapé principal -->
+  <footer class="main-footer">
+    <nav class="footer-nav" aria-label="Links do rodapé">
+      <a href="index.html">Validador</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="termos.html">Termos de Uso</a>
+      <a href="privacidade.html">Política de Privacidade</a>
+    </nav>
+    <p class="footer-copyright">&copy; 2025 Validar CPF/CNPJ - Todos os direitos reservados</p>
+  </footer>
+  
+  <script>
+    class FormularioContato {
+      constructor() {
+        this.form = document.getElementById('contactForm');
+        this.button = document.getElementById('enviarBtn');
+        this.successMessage = document.getElementById('successMessage');
+        
+        this.init();
+      }
+      
+      init() {
+        this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+        
+        // Validação em tempo real
+        const inputs = this.form.querySelectorAll('input[required], textarea[required]');
+        inputs.forEach(input => {
+          input.addEventListener('blur', () => this.validateField(input));
+          input.addEventListener('input', () => this.clearError(input));
+        });
+        
+        // Validação específica para email
+        const emailInput = document.getElementById('email');
+        emailInput.addEventListener('input', () => this.validateEmail(emailInput));
+      }
+      
+      handleSubmit(e) {
+        e.preventDefault();
+        
+        if (this.validateForm()) {
+          this.sendMessage();
+        }
+      }
+      
+      validateForm() {
+        const nome = document.getElementById('nome');
+        const email = document.getElementById('email');
+        const mensagem = document.getElementById('mensagem');
+        
+        let isValid = true;
+        
+        if (!this.validateField(nome)) isValid = false;
+        if (!this.validateEmail(email)) isValid = false;
+        if (!this.validateField(mensagem)) isValid = false;
+        
+        return isValid;
+      }
+      
+      validateField(field) {
+        const value = field.value.trim();
+        const errorElement = document.getElementById(`${field.id}-error`);
+        
+        if (!value) {
+          this.showError(field, errorElement, 'Este campo é obrigatório');
+          return false;
+        }
+        
+        if (field.id === 'nome' && value.length < 2) {
+          this.showError(field, errorElement, 'Nome deve ter pelo menos 2 caracteres');
+          return false;
+        }
+        
+        if (field.id === 'mensagem' && value.length < 10) {
+          this.showError(field, errorElement, 'Mensagem deve ter pelo menos 10 caracteres');
+          return false;
+        }
+        
+        this.clearError(field);
+        return true;
+      }
+      
+      validateEmail(emailField) {
+        const email = emailField.value.trim();
+        const errorElement = document.getElementById('email-error');
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        
+        if (!email) {
+          this.showError(emailField, errorElement, 'E-mail é obrigatório');
+          return false;
+        }
+        
+        if (!emailRegex.test(email)) {
+          this.showError(emailField, errorElement, 'Digite um e-mail válido');
+          return false;
+        }
+        
+        this.clearError(emailField);
+        return true;
+      }
+      
+      showError(field, errorElement, message) {
+        field.classList.add('invalid');
+        field.classList.remove('valid');
+        errorElement.textContent = message;
+        errorElement.style.display = 'block';
+        
+        // Shake animation
+        field.classList.add('shake');
+        setTimeout(() => field.classList.remove('shake'), 500);
+      }
+      
+      clearError(field) {
+        const errorElement = document.getElementById(`${field.id}-error`);
+        field.classList.remove('invalid');
+        field.classList.add('valid');
+        errorElement.style.display = 'none';
+      }
+      
+      sendMessage() {
+        this.button.classList.add('loading');
+        this.button.disabled = true;
+        this.button.textContent = 'Enviando...';
+        
+        // Simular envio (em uma aplicação real, aqui faria a requisição para o servidor)
+        setTimeout(() => {
+          this.button.classList.remove('loading');
+          this.button.disabled = false;
+          this.button.textContent = 'Enviar Mensagem';
+          
+          // Mostrar mensagem de sucesso
+          this.successMessage.style.display = 'block';
+          this.form.reset();
+          
+          // Limpar classes de validação
+          const inputs = this.form.querySelectorAll('input, textarea');
+          inputs.forEach(input => {
+            input.classList.remove('valid', 'invalid');
+          });
+          
+          // Scroll para a mensagem de sucesso
+          this.successMessage.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center' 
+          });
+          
+          // Esconder mensagem após 5 segundos
+          setTimeout(() => {
+            this.successMessage.style.display = 'none';
+          }, 5000);
+          
+        }, 2000); // Simular delay de envio
+      }
+    }
+    
+    // Inicializar quando o DOM estiver pronto
+    document.addEventListener('DOMContentLoaded', () => {
+      new FormularioContato();
+    });
+  </script>
 </body>
 </html>
