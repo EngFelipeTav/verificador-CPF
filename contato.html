@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contato - Validador</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { max-width: 600px; margin: auto; padding: 20px; font-family: Arial, sans-serif; }
+    input, textarea {
+      width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background: #007bff; color: #fff; border: none; padding: 10px 20px;
+      border-radius: 5px; cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Contato</h1>
+  <p>Envie sua dúvida ou sugestão:</p>
+  <form action="mailto:seuemail@dominio.com" method="post" enctype="text/plain">
+    <input type="text" name="nome" placeholder="Seu nome" required />
+    <input type="email" name="email" placeholder="Seu e-mail" required />
+    <textarea name="mensagem" rows="5" placeholder="Mensagem" required></textarea>
+    <button type="submit">Enviar</button>
+  </form>
+  <a href="index.html">← Voltar para a página principal</a>
+</body>
+</html>
