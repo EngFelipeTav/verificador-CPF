@@ -1,22 +1,587 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Termos de Uso</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Termos de Uso - Validador de CPF e CNPJ</title>
+  <meta name="description" content="Termos de uso do Validador de CPF e CNPJ. Conheça as condições para utilização da nossa ferramenta gratuita e segura.">
+  
+  <!-- Preload de fontes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  
   <style>
-    body { max-width: 600px; margin: auto; padding: 20px; font-family: Arial, sans-serif; }
+    :root {
+      --primary-color: #3b82f6;
+      --primary-hover: #2563eb;
+      --success-color: #059669;
+      --error-color: #dc2626;
+      --warning-color: #d97706;
+      --text-primary: #1f2937;
+      --text-secondary: #6b7280;
+      --background-light: #f9fafb;
+      --border-color: #d1d5db;
+      --border-radius: 12px;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      line-height: 1.6;
+    }
+    
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-lg);
+      max-width: 680px;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), #8b5cf6);
+    }
+    
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary-color);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 24px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      background: rgba(59, 130, 246, 0.05);
+    }
+    
+    .back-link:hover {
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--primary-hover);
+      transform: translateX(-2px);
+    }
+    
+    .back-link:focus {
+      outline: 2px solid var(--primary-color);
+      outline-offset: 2px;
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    
+    h1 {
+      margin: 0 0 8px 0;
+      color: var(--text-primary);
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+    }
+    
+    .subtitle {
+      color: var(--text-secondary);
+      font-size: 16px;
+      margin: 0 0 8px 0;
+    }
+    
+    .hero-section {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(139, 92, 246, 0.05));
+      padding: 24px;
+      border-radius: 12px;
+      border: 1px solid rgba(59, 130, 246, 0.1);
+      margin-bottom: 32px;
+      text-align: center;
+    }
+    
+    .hero-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+      display: block;
+    }
+    
+    .hero-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    
+    .hero-description {
+      color: var(--text-secondary);
+      margin: 0;
+    }
+    
+    .content {
+      color: var(--text-primary);
+    }
+    
+    h2 {
+      color: var(--text-primary);
+      font-size: 20px;
+      font-weight: 600;
+      margin: 32px 0 16px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    h2:first-of-type {
+      margin-top: 0;
+    }
+    
+    .section-icon {
+      font-size: 18px;
+    }
+    
+    p {
+      margin: 16px 0;
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+    
+    .intro-text {
+      background: rgba(59, 130, 246, 0.05);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      border-left: 4px solid var(--primary-color);
+      padding: 20px;
+      border-radius: 8px;
+      margin: 24px 0;
+    }
+    
+    .intro-text p {
+      margin: 0;
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+    
+    .terms-list {
+      background: var(--background-light);
+      padding: 24px;
+      border-radius: 12px;
+      border: 1px solid rgba(59, 130, 246, 0.1);
+      margin: 24px 0;
+    }
+    
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    
+    li {
+      margin: 16px 0;
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+    
+    .important-notice {
+      background: linear-gradient(135deg, rgba(217, 119, 6, 0.05), rgba(245, 158, 11, 0.05));
+      border: 1px solid rgba(217, 119, 6, 0.2);
+      border-left: 4px solid var(--warning-color);
+      padding: 20px;
+      border-radius: 8px;
+      margin: 24px 0;
+    }
+    
+    .important-notice h3 {
+      color: var(--warning-color);
+      margin: 0 0 12px 0;
+      font-size: 16px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .important-notice p {
+      margin: 0;
+      color: var(--text-primary);
+    }
+    
+    .contact-section {
+      background: var(--background-light);
+      padding: 20px;
+      border-radius: 8px;
+      margin: 24px 0;
+      text-align: center;
+    }
+    
+    .contact-section h3 {
+      color: var(--text-primary);
+      margin: 0 0 12px 0;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    
+    .contact-section p {
+      margin: 8px 0;
+      color: var(--text-secondary);
+    }
+    
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      background: rgba(59, 130, 246, 0.05);
+      margin-top: 8px;
+    }
+    
+    .contact-link:hover {
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+    
+    .last-updated {
+      background: rgba(5, 150, 105, 0.05);
+      border: 1px solid rgba(5, 150, 105, 0.2);
+      border-left: 4px solid var(--success-color);
+      padding: 16px;
+      border-radius: 8px;
+      margin: 24px 0;
+      text-align: center;
+    }
+    
+    .last-updated p {
+      margin: 0;
+      color: var(--success-color);
+      font-weight: 500;
+      font-size: 14px;
+    }
+    
+    .cta-section {
+      background: linear-gradient(135deg, var(--primary-color), #8b5cf6);
+      color: white;
+      padding: 24px;
+      border-radius: 12px;
+      text-align: center;
+      margin: 32px 0;
+    }
+    
+    .cta-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    
+    .cta-description {
+      margin-bottom: 16px;
+      opacity: 0.9;
+    }
+    
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      color: var(--primary-color);
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    
+    .cta-button:hover {
+      background: rgba(255, 255, 255, 0.95);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow);
+    }
+    
+    /* Responsividade */
+    @media (max-width: 480px) {
+      body {
+        padding: 16px;
+      }
+      
+      .container {
+        padding: 24px;
+      }
+      
+      h1 {
+        font-size: 24px;
+      }
+      
+      h2 {
+        font-size: 18px;
+      }
+      
+      .hero-icon {
+        font-size: 36px;
+      }
+    }
+    
+    /* Melhorias de acessibilidade */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+    
+    /* Rodapé principal */
+    .main-footer {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      margin-top: 20px;
+      max-width: 680px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .main-footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary-color), #8b5cf6);
+    }
+    
+    .footer-nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .footer-nav a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    
+    .footer-nav a:hover {
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+    
+    .footer-nav a:focus {
+      outline: 2px solid var(--primary-color);
+      outline-offset: 2px;
+    }
+    
+    .footer-nav a[href="termos.html"] {
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--primary-hover);
+      font-weight: 600;
+    }
+    
+    .footer-copyright {
+      color: var(--text-secondary);
+      font-size: 13px;
+      margin: 0;
+      line-height: 1.5;
+    }
+    
+    @media (max-width: 480px) {
+      .footer-nav {
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+      }
+      
+      .footer-nav a {
+        padding: 10px 16px;
+        width: 100%;
+        max-width: 200px;
+        text-align: center;
+      }
+      
+      .main-footer {
+        padding: 20px;
+        margin-top: 16px;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>Termos de Uso</h1>
-  <p>O uso deste site implica na aceitação dos termos abaixo:</p>
-  <ul>
-    <li>O site é gratuito e não garante 100% de precisão nos dados validados.</li>
-    <li>Você é responsável pelo uso correto das informações aqui geradas.</li>
-    <li>Reservamo-nos o direito de modificar o site a qualquer momento.</li>
-  </ul>
-  <a href="index.html">← Voltar para a página principal</a>
+  <main class="container">
+    <a href="index.html" class="back-link" aria-label="Voltar para a página principal">
+      ← Voltar para o Validador
+    </a>
+    
+    <header>
+      <h1>Termos de Uso</h1>
+      <p class="subtitle">Condições para utilização do Validador de CPF e CNPJ</p>
+    </header>
+    
+    <div class="hero-section">
+      <span class="hero-icon">📋</span>
+      <h2 class="hero-title">Termos e Condições</h2>
+      <p class="hero-description">
+        Ao utilizar nossa ferramenta, você concorda com os termos estabelecidos abaixo
+      </p>
+    </div>
+    
+    <div class="content">
+      <div class="intro-text">
+        <p>
+          🤝 <strong>Aceitação dos Termos:</strong> O uso deste site implica na aceitação automática e integral de todos os termos e condições descritos nesta página.
+        </p>
+      </div>
+      
+      <h2><span class="section-icon">📖</span> Condições Gerais de Uso</h2>
+      
+      <div class="terms-list">
+        <ul>
+          <li>
+            <strong>Gratuidade:</strong> O site é totalmente gratuito e não requer cadastro, pagamento ou fornecimento de dados pessoais para utilização.
+          </li>
+          
+          <li>
+            <strong>Limitação de Responsabilidade:</strong> Embora utilizemos algoritmos oficiais, não garantimos 100% de precisão nos dados validados. O usuário deve sempre verificar informações críticas através de fontes oficiais.
+          </li>
+          
+          <li>
+            <strong>Uso Responsável:</strong> Você é inteiramente responsável pelo uso correto das informações aqui geradas e por qualquer consequência decorrente de seu uso.
+          </li>
+          
+          <li>
+            <strong>Modificações:</strong> Reservamo-nos o direito de modificar, suspender ou descontinuar o site a qualquer momento, sem aviso prévio.
+          </li>
+          
+          <li>
+            <strong>Privacidade:</strong> Toda validação é processada localmente no seu navegador. Não coletamos, armazenamos ou compartilhamos os documentos validados.
+          </li>
+          
+          <li>
+            <strong>Finalidade:</strong> Esta ferramenta destina-se exclusivamente à validação da estrutura matemática de CPFs e CNPJs, não verificando a existência real dos documentos.
+          </li>
+        </ul>
+      </div>
+      
+      <h2><span class="section-icon">⚠️</span> Limitações Técnicas</h2>
+      <p>
+        Nossa ferramenta verifica apenas a validade matemática dos dígitos verificadores conforme os algoritmos oficiais da Receita Federal. Não verificamos:
+      </p>
+      
+      <ul>
+        <li>Se o CPF ou CNPJ está ativo na Receita Federal</li>
+        <li>Se o documento pertence a uma pessoa ou empresa real</li>
+        <li>Situação cadastral ou regularidade fiscal</li>
+        <li>Dados pessoais ou empresariais associados ao documento</li>
+      </ul>
+      
+      <div class="important-notice">
+        <h3>⚡ Importante</h3>
+        <p>
+          Para verificações oficiais, sempre consulte diretamente os órgãos competentes como Receita Federal, SERASA ou SPC.
+        </p>
+      </div>
+      
+      <h2><span class="section-icon">🛡️</span> Segurança e Privacidade</h2>
+      <p>
+        Garantimos que sua privacidade é nossa prioridade:
+      </p>
+      
+      <ul>
+        <li>Processamento 100% local no seu navegador</li>
+        <li>Nenhum dado é enviado para nossos servidores</li>
+        <li>Não utilizamos cookies de rastreamento</li>
+        <li>Não coletamos informações pessoais</li>
+        <li>Código-fonte dos algoritmos é transparente</li>
+      </ul>
+      
+      <h2><span class="section-icon">📱</span> Suporte e Compatibilidade</h2>
+      <p>
+        Nossa ferramenta é otimizada para funcionar em:
+      </p>
+      
+      <ul>
+        <li>Navegadores modernos (Chrome, Firefox, Safari, Edge)</li>
+        <li>Dispositivos móveis (smartphones e tablets)</li>
+        <li>Computadores desktop e notebooks</li>
+        <li>Sistemas operacionais diversos</li>
+      </ul>
+      
+      <h2><span class="section-icon">🔄</span> Atualizações dos Termos</h2>
+      <p>
+        Estes termos podem ser atualizados periodicamente para refletir melhorias no serviço ou mudanças na legislação. As alterações entrarão em vigor imediatamente após sua publicação nesta página.
+      </p>
+      
+      <div class="contact-section">
+        <h3>📞 Dúvidas ou Sugestões?</h3>
+        <p>Entre em contato conosco para esclarecimentos sobre estes termos.</p>
+        <a href="contato.html" class="contact-link">
+          💬 Fale Conosco
+        </a>
+      </div>
+      
+      <div class="last-updated">
+        <p>📅 <strong>Última atualização:</strong> Janeiro de 2025</p>
+      </div>
+    </div>
+    
+    <div class="cta-section">
+      <h3 class="cta-title">Entendeu os termos? Ótimo!</h3>
+      <p class="cta-description">
+        Agora você pode usar nossa ferramenta com total confiança e segurança.
+      </p>
+      <a href="index.html" class="cta-button">
+        ✅ Começar a Validar
+      </a>
+    </div>
+  </main>
+  
+  <!-- Rodapé principal -->
+  <footer class="main-footer">
+    <nav class="footer-nav" aria-label="Links do rodapé">
+      <a href="index.html">Validador</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="contato.html">Contato</a>
+      <a href="termos.html">Termos de Uso</a>
+      <a href="privacidade.html">Política de Privacidade</a>
+    </nav>
+    <p class="footer-copyright">&copy; 2025 Validar CPF/CNPJ - Todos os direitos reservados</p>
+  </footer>
 </body>
 </html>
