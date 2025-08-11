@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Consulta da Situação Cadastral - Validador de CPF</title>
+  <meta name="description" content="Faça a consulta CPF grátis e verifique sua situação cadastral na Receita Federal em segundos. Rápido, seguro e fácil de usar.">
+
+  <!-- Fonte -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-color: #2563eb;
+      --primary-hover: #1d4ed8;
+      --bg-color: #f9fafb;
+      --text-color: #111827;
+      --secondary-text: #6b7280;
+      --border-color: #e5e7eb;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      padding: 20px;
+    }
+    a {
+      text-decoration: none;
+      color: var(--primary-color);
+    }
+    a:hover {
+      color: var(--primary-hover);
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+    header {
+      margin-bottom: 30px;
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      color: var(--secondary-text);
+      font-size: 1rem;
+    }
+    .hero-section {
+      background: white;
+      border-radius: var(--radius-xl);
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 30px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .hero-icon {
+      font-size: 40px;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .hero-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    .hero-description {
+      color: var(--secondary-text);
+      margin-top: 5px;
+    }
+    .content h2 {
+      font-size: 1.3rem;
+      margin: 20px 0 10px;
+      font-weight: 600;
+    }
+    .section-icon {
+      margin-right: 8px;
+    }
+    ul {
+      padding-left: 20px;
+      margin-bottom: 15px;
+    }
+    ul li {
+      margin-bottom: 6px;
+    }
+    .highlight-box {
+      background: #eff6ff;
+      padding: 15px;
+      border-radius: var(--radius-lg);
+      margin: 20px 0;
+      color: #1e40af;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .feature-card {
+      background: white;
+      padding: 15px;
+      border-radius: var(--radius-lg);
+      text-align: center;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+    .feature-icon {
+      font-size: 28px;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .feature-title {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    .feature-description {
+      color: var(--secondary-text);
+      font-size: 0.9rem;
+    }
+    .cta-section {
+      background: white;
+      padding: 20px;
+      border-radius: var(--radius-xl);
+      text-align: center;
+      margin-top: 30px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .cta-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .cta-description {
+      color: var(--secondary-text);
+      margin-bottom: 15px;
+    }
+    .cta-button {
+      display: inline-block;
+      background: var(--primary-color);
+      color: white;
+      padding: 10px 20px;
+      border-radius: var(--radius-lg);
+      font-weight: 500;
+    }
+    .cta-button:hover {
+      background: var(--primary-hover);
+    }
+    .main-footer {
+      margin-top: 50px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--secondary-text);
+    }
+    .footer-nav {
+      margin-bottom: 10px;
+    }
+    .footer-nav a {
+      margin: 0 8px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <a href="index.html" class="back-link">← Voltar para o Validador</a>
+
+    <header>
+      <h1>Consulta da Situação Cadastral</h1>
+      <p class="subtitle">Verifique rapidamente a situação do seu CPF na Receita Federal</p>
+    </header>
+
+    <div class="hero-section">
+      <span class="hero-icon">🔍</span>
+      <h2 class="hero-title">Consulta CPF Fácil e Rápida</h2>
+      <p class="hero-description">
+        Descubra se o seu CPF está regular, pendente ou com restrições em poucos segundos.
+      </p>
+    </div>
+
+    <div class="content">
+      <h2><span class="section-icon">ℹ️</span> O que é a Situação Cadastral?</h2>
+      <p>
+        A <strong>situação cadastral</strong> indica o status do seu CPF nos registros da Receita Federal. Ela pode estar:
+      </p>
+      <ul>
+        <li><strong>Regular:</strong> sem pendências ou problemas.</li>
+        <li><strong>Pendente de regularização:</strong> há obrigações não cumpridas.</li>
+        <li><strong>Suspensa:</strong> dados incorretos ou inconsistentes.</li>
+        <li><strong>Cancelada:</strong> por duplicidade ou decisão judicial.</li>
+        <li><strong>Nula:</strong> número inválido.</li>
+      </ul>
+      <p>
+        Fazer uma <strong>consulta CPF</strong> é essencial para evitar problemas em compras, cadastros e transações financeiras.
+      </p>
+
+      <h2><span class="section-icon">💡</span> Quando fazer a Consulta CPF?</h2>
+      <p>Algumas situações em que a verificação é recomendada:</p>
+      <ul>
+        <li>Antes de fechar uma venda a prazo.</li>
+        <li>Ao contratar um funcionário.</li>
+        <li>Para verificar seu próprio documento.</li>
+        <li>Ao abrir conta bancária.</li>
+        <li>Em licitações e concursos públicos.</li>
+      </ul>
+
+      <div class="highlight-box">
+        💡 Dica: consultar seu CPF periodicamente ajuda a evitar surpresas e facilita a regularização em caso de problemas.
+      </div>
+
+      <h2><span class="section-icon">⚙️</span> Como fazer a Consulta da Situação Cadastral</h2>
+      <p>
+        Aqui no nosso site, a <strong>consulta CPF</strong> é feita de forma simples e gratuita:
+      </p>
+      <ul>
+        <li>Digite o número do CPF no campo indicado.</li>
+        <li>Confirme o código de segurança (captcha).</li>
+        <li>Clique em <strong>Consultar</strong> e veja o resultado.</li>
+      </ul>
+
+      <h2><span class="section-icon">✅</span> Benefícios da Consulta CPF</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">🚀</span>
+          <h3 class="feature-title">Rapidez</h3>
+          <p class="feature-description">Resultados em segundos, sem burocracia.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🔒</span>
+          <h3 class="feature-title">Segurança</h3>
+          <p class="feature-description">Consulta direta na base da Receita Federal.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🆓</span>
+          <h3 class="feature-title">Gratuidade</h3>
+          <p class="feature-description">Sem custos para o usuário.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">📱</span>
+          <h3 class="feature-title">Acessível</h3>
+          <p class="feature-description">Funciona em qualquer dispositivo.</p>
+        </div>
+      </div>
+
+      <h2><span class="section-icon">📌</span> Conclusão</h2>
+      <p>
+        Manter seu CPF regular é fundamental para ter acesso a crédito, serviços e oportunidades.
+        Utilize nossa ferramenta de <strong>consulta da situação cadastral</strong> e verifique agora mesmo se está tudo certo com o seu documento.
+      </p>
+    </div>
+
+    <div class="cta-section">
+      <h3 class="cta-title">Pronto para consultar seu CPF?</h3>
+      <p class="cta-description">Faça a verificação agora mesmo de forma gratuita e segura!</p>
+      <a href="index.html" class="cta-button">🚀 Consultar CPF Agora</a>
+    </div>
+  </main>
+
+  <footer class="main-footer">
+    <nav class="footer-nav">
+      <a href="index.html">Validador</a>
+      <a href="contato.html">Contato</a>
+      <a href="termos.html">Termos de Uso</a>
+      <a href="privacidade.html">Política de Privacidade</a>
+    </nav>
+    <p>&copy; 2025 Validar CPF/CNPJ - Todos os direitos reservados</p>
+  </footer>
+</body>
+</html>
